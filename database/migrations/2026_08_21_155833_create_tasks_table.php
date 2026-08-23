@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
         $table->id();
+        $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
         $table->string('title'); // عنوان المهمة
         $table->text('description')->nullable(); // وصف المهمة (اختياري)
         $table->boolean('is_completed')->default(false); // حالة المهمة

@@ -27,3 +27,9 @@ Route::get('/profile/{id}',[ProfileController::class,'show']);
 // Route::get('/profile/{id}',[ProfileController::class,'destroy']);
 
 Route::get('/user/{id}/profile',[UserController::class,'getUserProfile']);
+
+
+Route::get('/user/{id}/tasks',[UserController::class,'getUserTasks']);
+
+
+Route::get('/task/{id}/user',[TaskController::class,'getTaskUser']);

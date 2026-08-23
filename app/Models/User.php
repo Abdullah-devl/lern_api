@@ -35,4 +35,10 @@ class User extends Authenticatable
         return $this->hasOne(Profile::class);
 
     }
+
+    public function tasks ()
+    {
+        return $this->hasMany(Task::class);
+
+    }
 }
