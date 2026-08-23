@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Task\StoreTaskRequest;
 use App\Http\Requests\Task\UpdateTaskRequest;
+use App\Models\category;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -12,6 +13,40 @@ use function Laravel\Prompts\task;
 
 class TaskController extends Controller
 {
+
+
+    public function addcategoryToTask(Request $request, $taskId)
+    {
+        $task = Task::findOrFail($taskId);
+        $task->category()->attach($request->category_id);
+
+
+    }
+    public function getTasksUser($id)
+    {
+        //
+        $user=User::find($id)->user;
+        return response()->json($user,200);
+    }
+
+
+    public function getTaskCategories($taskId)
+    {
+        //
+        $category=Task::findOrFail($taskId)->category;
+        return response()->json($category,200);
+    }
+
+
+    public function getCategoriesTasks($categoryId)
+    {
+        //
+        $task=category::findOrFail($categoryId)->tasks;
+        return response()->json($task,200);
+    }
+
+
+
     /**
      * Display a listing of the resource.
      */
@@ -81,10 +116,5 @@ class TaskController extends Controller
     }
 
 
-    public function getTasksUser($id)
-    {
-        //
-        $user=User::find($id)->user;
-        return response()->json($user,200);
-    }
+    
 }
